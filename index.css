@@ -1,0 +1,51 @@
+body {
+    background-image: url(https://wallpaperaccess.com/full/1395861.jpg);
+  } 
+  
+  h1 {
+    text-align:center;
+    color: black;
+  }
+  
+  .choices {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #rock-btn, #paper-btn, #scissors-btn {
+      font-family: 'Times New Roman', Times, serif;
+      text-align: center;
+      color: black;
+      width: 100px; 
+      line-height: 50px;
+      background-color: rgb(0, 140, 255);
+      margin: 10px;
+      cursor: pointer;
+  }
+  
+  .resultChoice {
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    color: black;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #userchoice-text, computerchoice-text {
+    padding-right: 30px;
+  }
+  
+  .results {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #wins-text, #losses-text, #ties-text {
+      font-family: 'Times New Roman', Times, serif;
+      text-align: center;
+      color: black;
+      width: 100px; 
+      line-height: 50px;
+      background-color: rgb(234, 0, 255);
+      margin: 10px;
+  }

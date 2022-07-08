@@ -4,55 +4,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>JANKENPON</title>
+    <link rel="stylesheet" href="index.css">
+    <title>JanKenPon</title>
 </head>
 <body>
-    <h1>Welcome to JANKENPON</h1>
-    
-    <h4> The classic of classic games: Rock, Paper, Scissors. Even if you don't know how to play, We'll teach you! </h4>
-    
-    <h2>How To Play:</h2>
-
-    <h4>Player must choose 1 of 3 options:</h4>
-        <ol>"r" for Rock</ol>
-        <ol>"p" for Paper</ol>
-        <ol>"s" for Scissors</ol>
-    <h4>Once player chooses one of the options, the computer will also randomly pick one of the options. The outcomes are as followed:</h4>
-        <ol>Rock beats Scissors</ol>
-        <ol>Paper beats Rock</ol>
-        <ol>Scissors beat Paper</ol>
-        <ol>If Player and Computer chooses the same choice, then it is a tie</ol>
-
-
+    <div class="container">
+        
+        <h1>Press  Rock,  Paper,  or Scissors  to  play</h1>
+                
+        <div class="choices">
+          <div id="rock-btn">Rock</div>
+          <div id="paper-btn">Paper</div>
+          <div id="scissors-btn">Scissors</div>
+         </div>
+          <div class="resultChoice">
+             <p id="userchoice-text"></p>
+             <p id="computerchoice-text"></p>
+          </div>
+          <div class="results">
+              <p id="wins-text"></p>
+              <p id="losses-text"></p>
+              <p id="ties-text"></p>
+          </div>
+        </div>
     <script type="text/javascript">
+// array for choices of rock, paper, scissors
+var rockPaperScissors = ['Rock', 'Paper', 'Scissors'];
+//guesses
+function myGuessFn(input) {
+  if (input === 'Rock' || input === 'Paper' || input === 'Scissors') {
+    return input;
+  } else {
+    console.log('That\'s not a valid choice. Try again.');
+  };
+};
+// results
+var wins =0;
+var losses = 0;
+var ties = 0;
+//returns information to the DOM
+var userChoiceText = document.getElementById('userchoice-text');
+var computerChoiceText = document.getElementById('computerchoice-text');
+var winsText = document.getElementById('wins-text');
+var lossesText = document.getElementById('losses-text');
+var tiesText = document.getElementById('ties-text');
 
-// Creates an array that lists out all of the options (Rock, Paper, or Scissors).
-    var computerChoices = ["r", "p", "s"];
+//adds event listener
+document.getElementById('rock-btn').addEventListener('click', runGame);
+document.getElementById('paper-btn').addEventListener('click', runGame);
+document.getElementById('scissors-btn').addEventListener('click', runGame);
 
-// This function is run whenever the user presses a key.
-    document.onkeyup = function(event) {
-
-  // Determines which key was pressed.
-    var userGuess = event.key;
-
-  // Randomly chooses a choice from the options array. This is the Computer's guess.
-    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-
-  // Only run the following code block if the user presses "r" or "p" or "s".
-    if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
-
-    // Alert the userGuess and computerGuess
-        alert("User guess: " + userGuess);
-        alert("Computer guess: " + computerGuess);
-
+//function to run after event listener is triggered
+function runGame (event) {
+  var computerGuess = rockPaperScissors[Math.floor(Math.random()*rockPaperScissors.length)];
+  var myGuess = myGuessFn(event.target.textContent);
+    if ((myGuess === 'Rock' && computerGuess === 'Scissors') ||
+    (myGuess === 'Scissors' && computerGuess === 'Paper') ||
+    (myGuess === 'Paper' && computerGuess === 'Rock')) {
+        wins++;
+        console.log('I won!')
+    } else if (myGuess === computerGuess) {
+        ties++;
+        console.log('It\'s a tie!')
+    } else {
+        losses++;
+        console.log('Computer won!')
     }
-}
-    if ((userGuess === computerGuess))
-        alert("YOU TIED");
-    
-    if ((userGuess === "r") || (computerGuess === "p"))
-        alert("YOU LOST");
-
+    userChoiceText.textContent = 'You chose ' + myGuess.toUpperCase();
+    computerChoiceText.textContent = 'Computer chose ' + computerGuess.toUpperCase();
+    winsText.innerHTML = 'Wins: ' + wins;
+    tiesText.innerHTML = 'Ties: ' + ties;
+    lossesText.innerHTML = 'Losses: ' + losses;
+};
 
         
 </script>
